@@ -69,27 +69,27 @@ namespace WebAPIServer.Controllers
 			{
 				cpAddr = IPAddress.Parse(peerIPAddress);
 			}
-			catch { return BadRequest($"CP Address {peerIPAddress} not valid");  }
+			catch { return BadRequest($"CP Address {peerIPAddress} not valid"); }
 
 			CollectorPeer peer = new(cpAddr, peerAS);
 
 			return Ok(_service.GetAllTripletsOfASWithCP(middleAS, peer, family));
 		}
 
-        [HttpGet("findOnecp")]
-        public IActionResult GetByMiddleASShortData([FromQuery] uint middleAS, [FromQuery] string peerIPAddress, [FromQuery] uint peerAS, [FromQuery] int? queryFamily)
-        {
-            AddressFamily family = ValidateAddressFamily(queryFamily);
+		[HttpGet("findOnecp")]
+		public IActionResult GetByMiddleASShortData([FromQuery] uint middleAS, [FromQuery] string peerIPAddress, [FromQuery] uint peerAS, [FromQuery] int? queryFamily)
+		{
+			AddressFamily family = ValidateAddressFamily(queryFamily);
 
-            IPAddress cpAddr;
-            try
-            {
-                cpAddr = IPAddress.Parse(peerIPAddress);
-            }
-            catch { return BadRequest($"CP Address {peerIPAddress} not valid"); }
-            CollectorPeer peer = new(cpAddr, peerAS);
+			IPAddress cpAddr;
+			try
+			{
+				cpAddr = IPAddress.Parse(peerIPAddress);
+			}
+			catch { return BadRequest($"CP Address {peerIPAddress} not valid"); }
+			CollectorPeer peer = new(cpAddr, peerAS);
 
-            return Ok(_service.GetAllTripletsOfASWithCPSimpleData(middleAS, peer, family));
-        }
-    }
+			return Ok(_service.GetAllTripletsOfASWithCPSimpleData(middleAS, peer, family));
+		}
+	}
 }
