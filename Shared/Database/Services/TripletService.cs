@@ -53,7 +53,7 @@ namespace Shared.Database.Services
 			return _triplets.Find(t => t.Current == asn)
 					.ToEnumerable().AsParallel().Where(t => t.HasPeerSeen(collector, family)).Select(t =>
 					{
-						return t as TripletWithCounts;
+						return TripletWithCounts.FromFullTriplet(t);
 					}).ToHashSet();
 		}
 

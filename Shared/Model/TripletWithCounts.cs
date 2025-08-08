@@ -13,5 +13,16 @@
 		{
 
 		}
+
+		public static TripletWithCounts FromFullTriplet(TripletWithData fullTriplet)
+		{
+			return new TripletWithCounts(fullTriplet.Prec, fullTriplet.Current, fullTriplet.Succ)
+			{
+				Id = fullTriplet.Id,
+				PrefixCount = fullTriplet.PrefixCount,
+				TotalV4PathCount = fullTriplet.TotalV4PathCount,
+				TotalV6PathCount = fullTriplet.TotalV6PathCount
+			};
+		}
 	}
 }
